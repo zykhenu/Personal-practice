@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<style type="text/css">
+		*{
+			padding: 0;
+			margin: 0;
+		}
+		html,body{
+			width: 100%;
+			height: 100%;
+			overflow: hidden;
+
+		}
+		div{
+			position: absolute;
+			width: 100%;
+			height: 100%;
+
+		}
+		.player{
+			background: lightgreen;
+			width: 100px;
+			height: 100px;
+			left: 100px;
+			top: 100px;
+			border-radius: 10px; 
+			text-align: center;
+			line-height: 100px;
+			font-weight: 600;
+			color: #333;
+			font-size: 20px;
+		}
+		.box{
+			background: deepskyblue;
+			width: 100px;
+			height: 100px;
+			left: 600px;
+			top: 400px;
+			border-radius: 10px; 
+			text-align: center;
+			line-height: 100px;
+			font-weight: 600;
+			color: #333;
+			font-size: 20px;
+
+		}
+		.target{
+			background: gray;
+			width: 100px;
+			height: 100px;
+			left: 300px;
+			top: 600px;
+			border-radius: 20px; 
+			text-align: center;
+			font-style: oblique;
+			font-size: 30px;
+			line-height: 100px;
+			font-weight: 600;
+			color: #fff;
+		}
+		.over{
+			width: 100%;
+			height: 100%;
+			background: #233333;
+			text-align: center;
+			line-height: 800px;
+			color: white;
+			font-size: 100px;
+			font-weight: 500;
+			display: none;
+		}
+	</style>
+</head>
+<body>
+	<div class="player">小人儿</div>
+	<div class="box">箱子</div>
+	<div class="target">终点</div>
+	<div class="over">恭喜通关！</div>
+	<script type="text/javascript">
+		var player = document.querySelector('.player');
+		var box = document.querySelector('.box');
+		var target = document.querySelector('.target');
+
+		window.onkeydown = function(e){
+			switch(e.keyCode){
+				case 37://左
+				if (box.offsetLeft+box.offsetWidth==player.offsetLeft && player.offsetTop==box.offsetTop) {
+					box.style.left = box.offsetLeft-100+'px';
+				}
+					player.style.left = player.offsetLeft-100+'px';
+					break;
+				case 38://上
+				if (box.offsetTop+box.offsetWidth==player.offsetTop && player.offsetLeft==box.offsetLeft) {
+					box.style.top = box.offsetTop-100+'px';
+				}
+					player.style.top = player.offsetTop-100+'px';
+					break;
+				case 39://右
+				if (player.offsetLeft+player.offsetWidth==box.offsetLeft && player.offsetTop==box.offsetTop) {
+					box.style.left = box.offsetLeft+100+'px';
+				}
+					player.style.left = player.offsetLeft+100+'px';
+					break;
+				case 40://下
+				if (player.offsetTop+player.offsetWidth==box.offsetTop && player.offsetLeft==box.offsetLeft) {
+					box.style.top = box.offsetTop+100+'px';
+				}
+					player.style.top = player.offsetTop+100+'px';
+					break;
+
+			}
+			ceash();
+		}
+		function ceash(){
+			if (box.offsetLeft==target.offsetLeft && box.offsetTop==target.offsetTop) {
+				document.querySelector('.over').style.display = 'block';
+			}
+		}
+
+
+
+
+
+	</script>
+</body>
+</html>
