@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<style>
+		*{
+			padding: 0;
+			margin: 0;
+		}
+		body{
+			background: black;
+			overflow: hidden;
+		}
+		.man{
+			position: absolute;
+			width: 100px;
+			height: 200px;
+			top: 300px;
+			left: 100px;
+			animation: run 2s linear infinite;
+		}
+		@keyframes run{
+			0%{left: -100px;}
+			100%{left: 1500px;}
+		}
+		.head{
+			width: 40px;
+			height: 40px;
+			background: white;
+			border-radius: 20px;
+			margin: auto;
+		}
+		.hat{
+			width: 50px;
+			height: 10px;
+			background: orange;
+			transform: rotate(-10deg);
+		}
+		.body{
+			width: 2px;
+			height: 80px;
+			background: white;
+			margin: auto;
+		}
+		.hand{
+			width: 40px;
+			height: 40px;
+			border-left: 2px solid white;
+			border-bottom: 2px solid white;
+			position: absolute;
+			top: 50px;
+			left: 49px;
+			transform-origin: 0 0;
+		}
+		.hand-left{
+			transform: rotate(75deg);
+			animation: hl 0.5s linear infinite;
+		}
+		.hand-right{
+			transform: rotate(-40deg);
+			animation: hr 0.5s linear infinite;
+		}
+
+		@keyframes hl{
+			0%{transform: rotate(75deg);}
+			50%{transform: rotate(-40deg);}
+			100%{transform: rotate(75deg);}
+		}
+		@keyframes hr{
+			0%{transform: rotate(-40deg);}
+			50%{transform: rotate(75deg);}
+			100%{transform: rotate(-40deg);}
+		}
+
+		.leg{
+			width: 50px;
+			height: 50px;
+			border-top: 2px solid white;
+			border-right:2px solid white;
+			position: absolute;
+			top: 120px;
+			left: 49px;
+			transform-origin: 0 0;
+		}
+		.leg-left{
+			transform: rotate(135deg);
+			animation: ll 0.5s linear infinite;
+		}
+		.leg-right{
+			animation: lr 0.5s linear infinite;
+		}
+		@keyframes ll{
+			0%{transform: rotate(135deg);}
+			50%{transform: rotate(0deg);}
+			100%{transform: rotate(135deg);}
+		}
+		@keyframes lr{
+			0%{transform: rotate(0deg);}
+			50%{transform: rotate(135deg);}
+			100%{transform: rotate(0deg);}
+		}
+	</style>
+</head>
+<body>
+
+<div class="man">
+	<div class="head">
+		<div class="hat"></div>
+	</div>
+	<div class="body"></div>
+	<div class="hand hand-left"></div>
+	<div class="hand hand-right"></div>
+	<div class="leg leg-left"></div>
+	<div class="leg leg-right"></div>
+</div>
+
+</body>
+</html>
