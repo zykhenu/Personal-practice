@@ -1,0 +1,140 @@
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>添加子元素练习</title>
+		<style type="text/css">
+			#container{
+				width:500px;
+				height:300px;
+				border: 1px black solid;
+				overflow-y: auto;
+			}
+			.header span
+			{
+			
+				display:inline-block;
+				width: 25%;
+				line-height: 30px;
+				text-align: center;
+				border: solid black;
+				border-width: 0px 0px 1px 0px;
+				font-weight: bold;
+			}
+			.row span
+			{
+			
+				display:inline-block;
+				width: 25%;
+				line-height: 30px;
+				text-align: center;
+				border: solid black;
+				border-width: 0px 0px 1px 0px;
+				
+			}
+		</style>
+	</head>
+	<body>
+		<button id="add" onclick="add()" >添加记录</button>
+		<div id="container">
+			<div class="header">
+				<span >编号</span><span >姓名</span><span >年龄</span><span >分数</span>
+			</div>
+			<!--<div class='row'><span >1</span><span >张三</span><span >22</span><span >89</span></div>
+			-->
+		</div>
+		
+		<script type="text/javascript">
+			var rows=[
+					{
+						id:1,
+						name:"张三",
+						age:20,
+						score:98
+					},
+					{
+						id:2,
+						name:"李四",
+						age:20,
+						score:98
+					},
+					{
+						id:3,
+						name:"王五",
+						age:20,
+						score:98
+					},
+					{
+						id:4,
+						name:"赵六",
+						age:20,
+						score:98
+					},
+					{
+						id:5,
+						name:"孙七",
+						age:20,
+						score:98
+					}
+					
+			];
+			function add()
+			{
+				
+				//第一种方法
+				
+//				var strRows="";
+//				
+//				for(var i=0;i<rows.length;i++)
+//				{
+//					var row=rows[i];  //得到数组中的每一行对象
+//					
+//					var insertH="<div class='row'><span >"+row.id+
+//					           "</span><span >"+row.name+
+//					           "</span><span >"+row.age+
+//					           "</span><span >"+row.score+"</span></div>";
+//					strRows+=insertH;
+//				
+//				}
+//				console.log(strRows);
+//				var parentHTML=document.getElementById("container");
+//				parentHTML.innerHTML+=strRows;	
+				
+				
+				
+			   //第二种方法
+//			   console.time("m");
+				var parentHTML=document.getElementById("container");
+					
+				for(var i=0;i<rows.length;i++)
+				{
+					var row=rows[i];   //得到数组中的每一行对象
+					
+					var div=document.createElement("div");  //行记录容器
+					div.className="row";   //创建Div的容器
+					
+						var span=document.createElement("span");  //span表示单元格
+						span.innerHTML=row.id;  //数据字段的内容
+						div.appendChild(span);
+						
+						span=document.createElement("span");
+						span.innerHTML=row.name;
+						div.appendChild(span);
+						
+						span=document.createElement("span");
+						span.innerHTML=row.age;
+						div.appendChild(span);
+						
+						span=document.createElement("span");
+						span.innerHTML=row.score;
+						div.appendChild(span);
+					
+				    parentHTML.appendChild(div);  //添加到父级DIV中
+			}
+//				 console.timeEnd("m");
+			}
+			
+		</script>
+	</body>
+</html>
