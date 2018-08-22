@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+		<title>时钟</title>
+		
+	</head>
+	<body>
+		<canvas id="myCanvas" width="600px" height="600px" style="border:solid 1px black;">浏览器不支持！</canvas>
+
+	
+		<script type="text/javascript">
+			var canvas=document.getElementById("myCanvas");
+			var ctx=canvas.getContext("2d");
+			
+			function clock()
+			{
+				var date=new Date();
+				var h=date.getHours();
+				var m=date.getMinutes();
+				var s=date.getSeconds();
+				
+				m=m+s/60;
+				h=h+m/60;
+				
+				ctx.clearRect(0,0,600,canvas.height);  
+				ctx.save();
+				ctx.translate(300,300);
+				
+				//表盘
+				ctx.beginPath();
+				ctx.strokeStyle="black";
+				ctx.arc(0,0,220,0,2*Math.PI);
+				ctx.lineWidth=20;
+				ctx.closePath();
+				ctx.stroke();
+				//时刻度、分刻度、数字
+				
+				//时刻度、
+				for(var i=0;i<12;i++)
+				{
+					ctx.save();   //保存坐标空间
+					ctx.beginPath();
+					ctx.lineWidth=8;
+					ctx.strokeStyle="rgb(30,30,30)";
+					ctx.rotate(i*30*Math.PI/180);
+					ctx.moveTo(0,-170);
+					ctx.lineTo(0,-190);
+					ctx.stroke();
+					ctx.restore(); //恢复坐标空间
+				}
+				//分刻度
+				for(var i=0;i<60;i++)
+				{
+					ctx.save();   //保存坐标空间
+					ctx.beginPath();
+					ctx.lineWidth=6;
+					ctx.strokeStyle="rgb(30,30,30)";
+					ctx.rotate(i*6*Math.PI/180);
+					ctx.moveTo(0,-190);
+					ctx.lineTo(0,-180);
+					ctx.stroke();
+					ctx.restore(); //恢复坐标空间
+				}					
+				
+				//数字
+				
+				
+				
+				
+				//指针（时、分、秒）
+				ctx.save();   //保存坐标空间
+				ctx.beginPath();
+				ctx.lineWidth=7;
+				ctx.strokeStyle="rgb(50,50,50)";
+				ctx.rotate(h*30*Math.PI/180);
+				ctx.moveTo(0,-120);
+				ctx.lineTo(0,20);
+				ctx.stroke();
+				ctx.restore(); //恢复坐标空间				
+				
+				//分针
+				ctx.save();   //保存坐标空间
+				ctx.beginPath();
+				ctx.lineWidth=5;
+				ctx.strokeStyle="gray";
+				ctx.rotate(m*6*Math.PI/180);
+				ctx.moveTo(0,-150);
+				ctx.lineTo(0,20);
+				ctx.stroke();
+				ctx.restore(); //恢复坐标空间		
+				
+				
+				//秒针
+				ctx.save();   //保存坐标空间
+				ctx.beginPath();
+				ctx.lineWidth=2;
+				ctx.strokeStyle="red";
+				ctx.rotate(s*6*Math.PI/180);
+				ctx.moveTo(0,-170);
+				ctx.lineTo(0,30);
+				ctx.stroke();
+				ctx.restore(); //恢复坐标空间		
+				
+				ctx.beginPath();
+				ctx.arc(0,0,5,0,2*Math.PI);
+				ctx.strokeStyle="red";
+				ctx.lineWidth=2;
+				ctx.closePath();
+				ctx.stroke();
+				ctx.fill();
+				
+				
+				ctx.restore();
+				
+				requestAnimationFrame(clock);
+			}
+			clock();
+			
+		</script>
+	
+	</body>
+</html>
